@@ -26,7 +26,7 @@ app.post('/predict_home_price', (req, res) => {
     const { total_sqft, location, bhk, bath } = req.body;
 
     if (!total_sqft || !location || !bhk || !bath) {
-        return res.json( 'All fields are required.' );
+        return res.json( 100 );
     }
 
     try {
