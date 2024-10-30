@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const util = require('./util');
@@ -7,8 +6,9 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Middleware
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ origin: '*' })); // Allow all origins
 
 app.get('/', (req, res) => {
     res.send("Hello");
@@ -38,6 +38,7 @@ app.post('/predict_home_price', (req, res) => {
     }
 });
 
+// Start the server
 const startServer = async () => {
     console.log("Starting Node.js Express Server For Home Price Prediction...");
     await util.loadSavedArtifacts();
