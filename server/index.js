@@ -6,9 +6,8 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
 app.use(bodyParser.json());
-app.use(cors({ origin: '*' })); // Allow all origins
+app.use(cors({ origin: '*' }));
 
 app.get('/', (req, res) => {
     res.send("Hello");
@@ -27,7 +26,7 @@ app.post('/predict_home_price', (req, res) => {
     const { total_sqft, location, bhk, bath } = req.body;
 
     if (!total_sqft || !location || !bhk || !bath) {
-        return res.status(400).json({ error: 'All fields are required.' });
+        return res.json( 'All fields are required.' );
     }
 
     try {
@@ -38,7 +37,6 @@ app.post('/predict_home_price', (req, res) => {
     }
 });
 
-// Start the server
 const startServer = async () => {
     console.log("Starting Node.js Express Server For Home Price Prediction...");
     await util.loadSavedArtifacts();
